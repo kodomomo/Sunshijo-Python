@@ -4,7 +4,7 @@ from requests import get
 class NiceApiCaller:
 
     def __init__(self):
-        config_path = str(__file__).replace('nice.py', 'nice_config.json.json')
+        config_path = str(__file__).replace('nice.py', 'nice_config.json')
         self._config_dict = eval(open(config_path).read())
 
     def call_schedule_by_grade_class_date(self, grade: int, class_num: int, start_date: int, end_date: int):
