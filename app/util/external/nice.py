@@ -1,23 +1,26 @@
 from requests import get
 
+from app.config import Config
+from app.util.type_changer import int_to_date, int_to_week_of_day
 
-class NiceApiCaller:
 
-    def __init__(self):
-        config_path = str(__file__).replace('nice.py', 'nice_config.json')
-        self._config_dict = eval(open(config_path).read())
+def get_schedule_list(grade: int, _class: int, start_date: int, end_date: int):
+    return get(Config.Nice.URL.format(
+        ACCESS_KEY=Config.Nice.ACCESS_KEY,
+        GRADE=grade,
+        _CLASS=_class,
+        START_DATE=start_date,
+        END_DATE=end_date
+    )).json()['hisTimetable'][1]['row']
 
-    def call_schedule_by_grade_class_date(self, grade: int, class_: int, start_date: int, end_date: int):
-        return get(
-            'https://open.neis.go.kr/hub/hisTimetable?'
-            f'KEY={self._config_dict["key"]}'
-            '&Type=json'
-            '&pIndex=1'
-            '&pSize=100'
-            '&ATPT_OFCDC_SC_CODE=G10'
-            '&SD_SCHUL_CODE=7430310'
-            f'&GRADE={grade}'
-            f'&CLASS_NM={class_}'
-            f'&TI_FROM_YMD={start_date}'
-            f'&TI_TO_YMD={end_date}'
-        ).json()['hisTimetable'][1]['row']
+
+def parse_schedule(schedule_list):
+    return list(map(lambda x: {
+        'SUBJECT': x['ITRT_CNTNT'],
+        'GRADE': x['GRADE'],
+        'ROOM': x['CLASS_NM'],
+        'SEQUENCE': x['PERIO'],
+        'WEEK_OF_DAY': int_to_date(x['ALL_TI_YMD']),
+        'DAY': int_to_week_of_day(x['ALL_TI_YMD'])
+    }, schedule_list))
+
