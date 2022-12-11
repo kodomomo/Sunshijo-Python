@@ -50,3 +50,22 @@ class DAO:
 
 dao = DAO()
 Base = __declarative_base()
+
+
+def create_all_table():
+    from sqlalchemy.sql import text
+
+    from app.util.dao.mysql.schedule import get_schedule_table_create_query
+    from app.util.dao.mysql.teacher import get_teacher_table_create_query
+    from app.util.dao.mysql.record import get_create_record_table_sql
+
+    with dao.execute_query() as execute:
+        execute(
+            text(get_schedule_table_create_query())
+        )
+        execute(
+            text(get_teacher_table_create_query())
+        )
+        execute(
+            text(get_create_record_table_sql())
+        )
