@@ -18,5 +18,5 @@ def query_schedule_list(grade: str, room: str, start_at: date, end_at: date):
             .filter(Schedule.grade == grade) \
             .filter(Schedule.room == room) \
             .filter(Schedule.day.between(start_at, end_at)) \
-            .order_by(Schedule.grade, Schedule.grade, Schedule.day, Schedule.sequence) \
+            .order_by(Schedule.grade, Schedule.day, Schedule.sequence) \
             .all()
