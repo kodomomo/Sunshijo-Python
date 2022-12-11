@@ -1,6 +1,7 @@
 from uuid import uuid4
-from datetime import date
-from typing import Optional
+from datetime import date, timedelta
+
+from app.util.exception import DatePeriodIsNotWeek
 
 from app.util.external.nice import get_this_weekend_schedule
 
@@ -26,4 +27,13 @@ def fill_this_week_schedule():
 
 
 def get_schedule_list(grade: str, room: str, start_at: date, end_at: date):
-    return query_schedule_list(grade, room, start_at, end_at)
+    if start_at + timedelta(days=6) < end_at or start_at < end_at - timedelta(days=6):
+        raise DatePeriodIsNotWeek
+
+    response = {}
+    for i in query_schedule_list(grade, room, start_at, end_at):
+        if i['day'].weekday() in response:
+            response[i['day'].weekday()] += [i]
+        else:
+            response[i['day'].weekday()] = [i]
+    return response
