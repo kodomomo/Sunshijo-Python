@@ -1,9 +1,9 @@
 from uuid import uuid4
 from datetime import date, timedelta
 
-from app.util.exception import DatePeriodIsNotWeek
+from app.util.exception.custom import DatePeriodIsNotWeek
 
-from app.util.external.nice import get_this_weekend_schedule
+from app.util.external_api.nice import get_this_weekend_schedule
 
 from app.util.dao.mysql.schedule.command import insert_schedule_by_sql
 from app.util.dao.mysql.schedule.query import query_schedule_list

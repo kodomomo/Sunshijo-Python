@@ -14,3 +14,5 @@ def ktc_this_monday() -> date:
 
 def ktc_this_friday() -> date:
     return ktc_this_monday() + timedelta(days=4)
+
+# 이것들도  date 관련 패키지로 뺄까? TODO
