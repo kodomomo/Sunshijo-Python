@@ -3,10 +3,7 @@ from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
 
-from contextlib import contextmanager
 
-
-@contextmanager
 class Config:
     class Nice:
         ACCESS_KEY = os.environ['NICE_ACCESS_KEY']
