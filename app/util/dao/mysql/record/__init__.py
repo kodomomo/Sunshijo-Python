@@ -1,6 +1,8 @@
-from sqlalchemy import Column, ForeignKey, VARCHAR, BINARY
+from sqlalchemy import Column, ForeignKeyConstraint, VARCHAR, BINARY, DATETIME, CHAR, DATE
 
 from app.util.dao.mysql import Base
+from app.util.dao.mysql.schedule import Schedule
+from app.util.dao.mysql.teacher import Teacher
 
 
 class Record(Base):
@@ -8,15 +10,39 @@ class Record(Base):
 
     record_id = Column(BINARY(16), primary_key=True)
     note = Column(VARCHAR(255), nullable=True)
+    request_at = Column(DATETIME, nullable=False)
+    approved_at = Column(DATETIME, nullable=True)
 
-    want_teacher_id = Column(ForeignKey('tbl_teacher.id'), nullable=False)
-    approve_teacher_id = Column(ForeignKey('tbl_teacher.id'), nullable=False)
+    request_teacher = Column(BINARY(16), nullable=False)
+    approved_teacher = Column(BINARY(16), nullable=False)
 
-    new_schedule_id = Column(ForeignKey('tbl_schedule.id'), nullable=False)
-    origin_schedule_id = Column(ForeignKey('tbl_schedule.id'), nullable=False)
+    origin_grade = Column(CHAR(1), nullable=False)
+    origin_class = Column(CHAR(1), nullable=False)
+    origin_name = Column(VARCHAR(25), nullable=False)
+    origin_gradations = Column(CHAR(1), nullable=False)
+    origin_day = Column(DATE, nullable=False)
 
+    new_grade = Column(CHAR(1), nullable=False)
+    new_class = Column(CHAR(1), nullable=False)
+    new_name = Column(VARCHAR(25), nullable=False)
+    new_gradations = Column(CHAR(1), nullable=False)
+    new_day = Column(DATE, nullable=False)
 
-def get_create_record_table_sql():
-    from sqlalchemy.schema import CreateTable
-
-    return str(CreateTable(Record.__table__).compile())
+    __table_args__ = (
+        ForeignKeyConstraint(
+            [origin_grade, origin_class, origin_name, origin_day, origin_gradations],
+            [Schedule.grade, Schedule.class_num, Schedule.name, Schedule.day_at, Schedule.gradations]
+        ),
+        ForeignKeyConstraint(
+            [new_grade, new_class, new_name, new_day, new_gradations],
+            [Schedule.grade, Schedule.class_num, Schedule.name, Schedule.day_at, Schedule.gradations],
+        ),
+        ForeignKeyConstraint(
+            [request_teacher],
+            [Teacher.teacher_id]
+        ),
+        ForeignKeyConstraint(
+            [approved_teacher],
+            [approved_teacher]
+        )
+    )

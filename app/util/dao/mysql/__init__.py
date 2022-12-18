@@ -43,9 +43,13 @@ class DAO:
         finally:
             self.__session.close()
 
+    @property
+    def engine(self):
+        return self.__engine
+
     @contextmanager
     def execute_query(self):
-        yield self.__engine.execute
+        yield self.engine.execute
 
 
 dao = DAO()
@@ -53,19 +57,8 @@ Base = __declarative_base()
 
 
 def create_all_table():
-    from sqlalchemy.sql import text
+    from app.util.dao.mysql.schedule import Schedule
+    from app.util.dao.mysql.teacher import Teacher
+    from app.util.dao.mysql.record import Record
 
-    from app.util.dao.mysql.schedule import get_schedule_table_create_query
-    from app.util.dao.mysql.teacher import get_teacher_table_create_query
-    from app.util.dao.mysql.record import get_create_record_table_sql
-
-    with dao.execute_query() as execute:
-        execute(
-            text(get_schedule_table_create_query())
-        )
-        execute(
-            text(get_teacher_table_create_query())
-        )
-        execute(
-            text(get_create_record_table_sql())
-        )
+    Base.metadata.create_all(dao.engine)
