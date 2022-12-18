@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKeyConstraint, VARCHAR, BINARY, DATETIME, CHAR, DATE
+from sqlalchemy import Column, ForeignKeyConstraint, VARCHAR, BINARY, DATETIME, CHAR, DATE, PrimaryKeyConstraint
 
 from app.util.dao.mysql import Base
 from app.util.dao.mysql.schedule import Schedule
@@ -30,19 +30,19 @@ class Record(Base):
 
     __table_args__ = (
         ForeignKeyConstraint(
-            [origin_grade, origin_class, origin_name, origin_day, origin_gradations],
-            [Schedule.grade, Schedule.class_num, Schedule.name, Schedule.day_at, Schedule.gradations]
-        ),
-        ForeignKeyConstraint(
-            [new_grade, new_class, new_name, new_day, new_gradations],
-            [Schedule.grade, Schedule.class_num, Schedule.name, Schedule.day_at, Schedule.gradations],
-        ),
-        ForeignKeyConstraint(
             [request_teacher],
             [Teacher.teacher_id]
         ),
         ForeignKeyConstraint(
             [approved_teacher],
-            [approved_teacher]
+            [Teacher.teacher_id]
+        ),
+        ForeignKeyConstraint(
+            [origin_grade, origin_class, origin_name, origin_gradations, origin_day],
+            [Schedule.grade, Schedule.class_num, Schedule.name, Schedule.gradations, Schedule.day_at]
+        ),
+        ForeignKeyConstraint(
+            [new_grade, new_class, new_name, new_gradations, new_day],
+            [Schedule.grade, Schedule.class_num, Schedule.name, Schedule.gradations, Schedule.day_at]
         )
     )
