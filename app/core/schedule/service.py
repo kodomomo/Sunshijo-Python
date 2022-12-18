@@ -1,29 +1,34 @@
-from uuid import uuid4
 from datetime import date, timedelta
 
+from sqlalchemy.exc import IntegrityError
+
 from app.util.exception.custom import DatePeriodIsNotWeek
-
-from app.util.external_api.nice import get_this_weekend_schedule
-
-from app.util.dao.mysql.schedule.command import insert_schedule_by_sql
 from app.util.dao.mysql.schedule.query import query_schedule_list
+from app.util.dao.mysql.schedule.command import insert_schedule_by_sql
+from app.util.external_api.nice import get_this_week_schedule, get_next_week_schedule
 
 
-def fill_this_week_schedule():
-    sql, values = 'INSERT INTO tbl_schedule(id, sequence, grade, room, subject, day, week_of_day) VALUES', ' '
+def fill_two_week_schedule():
+    for schedule in [
+        get_this_week_schedule(),
+        get_next_week_schedule()
+    ]:
+        sql, values = 'INSERT INTO tbl_schedule(gradations, grade, class_num, name, day_at, week_of_day) VALUES', ' '
 
-    values = values.join(
-        map(
-            lambda i: " (UNHEX(REPLACE('{}','-','')),'{}','{}','{}','{}','{}','{}'),".format(
-                uuid4(), i['SEQUENCE'], i['GRADE'], i['ROOM'], i['SUBJECT'], i['DAY'], i['WEEK_OF_DAY']
+        sql = sql + values.join(
+            map(
+                lambda i: " ('{}','{}','{}','{}','{}','{}'),".format(
+                    i['SEQUENCE'], i['GRADE'], i['ROOM'], i['SUBJECT'], i['DAY'], i['WEEK_OF_DAY']
+                )
+                , schedule
             )
-            , get_this_weekend_schedule()
-        )
-    )
+        )[:-1] + ';'
 
-    sql += values[:-1] + ';'
+        try:
+            insert_schedule_by_sql(sql)
 
-    insert_schedule_by_sql(sql)
+        except IntegrityError:
+            continue
 
 
 def get_schedule_list(grade: str, room: str, start_at: date, end_at: date):
