@@ -2,7 +2,7 @@ from datetime import datetime, timedelta, date
 
 
 def ktc_now():
-    return datetime.now() + timedelta(hours=9)
+    return datetime.utcnow() + timedelta(hours=9)
 
 
 def ktc_this_monday() -> date:
@@ -13,6 +13,19 @@ def ktc_this_monday() -> date:
 
 
 def ktc_this_friday() -> date:
-    return ktc_this_monday() + timedelta(days=4)
+    now = ktc_now()
+    friday = now - timedelta(days=now.weekday() - 4)
 
-# 이것들도  date 관련 패키지로 뺄까? TODO
+    return friday.date()
+
+
+def ktc_next_monday() -> date:
+    now = ktc_now()
+    next_monday = now - timedelta(days=now.weekday() - 7)
+    return next_monday.date()
+
+
+def ktc_next_friday() -> date:
+    now = ktc_now()
+    next_friday = now - timedelta(days=now.weekday() - 11)
+    return next_friday.date()
