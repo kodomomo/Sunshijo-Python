@@ -15,14 +15,16 @@ def fill_two_week_schedule():
     ]:
         sql, values = 'INSERT INTO tbl_schedule(gradations, grade, class_num, name, day_at, week_of_day) VALUES', ' '
 
-        sql = sql + values.join(
+        values = values.join(
             map(
                 lambda i: " ('{}','{}','{}','{}','{}','{}'),".format(
                     i['SEQUENCE'], i['GRADE'], i['ROOM'], i['SUBJECT'], i['DAY'], i['WEEK_OF_DAY']
                 )
                 , schedule
             )
-        )[:-1] + ';'
+        )
+        
+        sql += values[:-1] + ';'
 
         try:
             insert_schedule_by_sql(sql)
