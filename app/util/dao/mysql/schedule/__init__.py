@@ -19,11 +19,3 @@ class Schedule(Base):
         PrimaryKeyConstraint(grade, class_num, name, gradations, day_at),
         {}
     )
-
-if __name__ == '__main__':
-    def get_schedule_table_create_query():
-        from sqlalchemy.schema import CreateTable
-
-        return str(CreateTable(Schedule.__table__).compile())
-
-    print(get_schedule_table_create_query())
