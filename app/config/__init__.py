@@ -23,3 +23,7 @@ class Config:
         ACCESS_EXPIRE = int(os.environ['JWT_ACCESS_EXPIRE'])
         REFRESH_NAME = os.environ['JWT_REFRESH_NAME']
         REFRESH_EXPIRE = int(os.environ['JWT_REFRESH_EXPIRE'])
+
+    class Redis:
+        HOST = os.environ['REDIS_HOST']
+        PORT = os.environ['REDIS_PORT']
