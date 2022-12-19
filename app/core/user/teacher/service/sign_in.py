@@ -1,0 +1,37 @@
+from datetime import timedelta
+
+from app.config import Config
+from app.core.user import Role
+
+from app.core.user.teacher.payload import Response
+
+from app.util.dao.redis.command import set_ex
+from app.util.dao.mysql.teacher.query import query_teacher_by_account_id
+
+from app.util.exception.custom import WrongPasswordException
+
+from app.util.security.password import match_password
+from app.util.security.token import generate_access_token, generate_refresh_token
+
+Config = Config.JWT
+
+
+def sign_in(account_id: str, password: str):
+    teacher = query_teacher_by_account_id(account_id)
+
+    if not match_password(password, teacher.password):
+        raise WrongPasswordException
+
+    access_token = generate_access_token(teacher.teacher_id, Role.TEACHER)
+    refresh_token = generate_refresh_token(teacher.teacher_id)
+
+    set_ex(
+        ttl=timedelta(hours=Config.REFRESH_EXPIRE),
+        uid=teacher.teacher_id,
+        refresh_token=refresh_token
+    )
+
+    return Response.BothToken(
+        access_token,
+        refresh_token
+    )
