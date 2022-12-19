@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from app.util.exception.custom import DatePeriodIsNotWeek
+from app.util.exception.custom.util import DatePeriodIsNotWeek
 from app.util.dao.mysql.schedule.query import query_schedule_list
 
 

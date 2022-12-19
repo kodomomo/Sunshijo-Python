@@ -8,7 +8,7 @@ from app.core.user.teacher.payload import Response
 from app.util.dao.redis.command import set_ex
 from app.util.dao.mysql.teacher.query import query_teacher_by_account_id
 
-from app.util.exception.custom import WrongPasswordException
+from app.util.exception.custom.security import WrongPasswordException
 
 from app.util.security.password import match_password
 from app.util.security.token import generate_access_token, generate_refresh_token
