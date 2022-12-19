@@ -27,3 +27,10 @@ class Config:
     class Redis:
         HOST = os.environ['REDIS_HOST']
         PORT = os.environ['REDIS_PORT']
+
+    class Regrex:
+        REGREX_ID = os.environ['REGREX_ACCOUNT_ID']
+        REGREX_PASSWORD = os.environ['REGREX_PASSWORD']
+
+    class Auth:
+        AUTH_CODE = os.environ['AUTH_CODE']
