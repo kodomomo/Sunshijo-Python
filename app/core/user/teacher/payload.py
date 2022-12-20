@@ -15,6 +15,8 @@ class Request:
         auth_code: UUID
         account_id: constr()
         password: constr()
+        workplace: str
+        allocated_subject: str
 
         @validator('account_id')
         def check_account_id(cls, v):
