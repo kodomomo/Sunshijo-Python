@@ -10,10 +10,17 @@ def get_schedule_list(grade: str, room: str, start_at: date, end_at: date):
     response = {}
 
     for i in query_schedule_list(grade, room, start_at, end_at):
-        if i['day_at'].weekday() in response:
-            response[i['day_at'].weekday()] += [i]
+
+        if '[보강]' in i.name:
+            i.name = i.name.replace('[보강]','')
+
+        week_day = i.day_at.weekday()
+
+        if week_day in response:
+            response[week_day] += [i]
+
         else:
-            response[i['day_at'].weekday()] = [i]
+            response[week_day] = [i]
 
     return response
 
