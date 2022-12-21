@@ -12,10 +12,6 @@ class Config:
     class DataBase:
         URL = os.environ['DATABASE_URL']
 
-    class AWS:
-        ACCESS_KEY = os.environ['AWS_ACCESS_KEY']
-        SECRET_KEY = os.environ['AWS_SECRET_KEY']
-
     class JWT:
         ALGORITHM = os.environ['JWT_ALGORITHM']
         SECRET_KEY = os.environ['JWT_SECRET_KEY']
