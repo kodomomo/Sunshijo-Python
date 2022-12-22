@@ -1,16 +1,16 @@
 from datetime import date
 from typing import List
 
-from sqlalchemy.sql import func
 from app.util.dao.mysql import dao
 from app.util.dao.mysql.schedule import Schedule
+from app.util.exception.custom import Throws
+from app.util.exception.custom.models.schedule import ScheduleNotFoundException
 
 
+@Throws.not_found_exception(ScheduleNotFoundException)
 def query_schedule_list(grade: str, class_num: str, start_at: date, end_at: date) -> List[Schedule]:
     with dao.session_scope() as session:
-        return session.query(
-            Schedule
-        ) \
+        return session.query(Schedule) \
             .filter(Schedule.grade == grade) \
             .filter(Schedule.class_num == class_num) \
             .filter(Schedule.day_at.between(start_at, end_at)) \
