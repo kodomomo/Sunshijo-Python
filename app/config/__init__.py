@@ -1,4 +1,6 @@
 import os
+from uuid import UUID
+
 from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
@@ -29,4 +31,4 @@ class Config:
         REGREX_PASSWORD = os.environ['REGREX_PASSWORD']
 
     class Auth:
-        AUTH_CODE = os.environ['AUTH_CODE']
+        AUTH_CODE: UUID = UUID(os.environ['AUTH_CODE'])
