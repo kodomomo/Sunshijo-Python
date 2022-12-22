@@ -3,8 +3,8 @@ from typing import List
 
 from app.util.dao.mysql import dao
 from app.util.dao.mysql.schedule import Schedule
-from app.util.exception.custom import Throws
-from app.util.exception.custom.models.schedule import ScheduleNotFoundException
+from app.common.exception import Throws
+from app.common.exception import ScheduleNotFoundException
 
 
 @Throws.not_found_exception(ScheduleNotFoundException)

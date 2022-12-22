@@ -1,11 +1,9 @@
-import re
 from uuid import UUID
 from dataclasses import dataclass
 
-from pydantic import BaseModel, constr, validator
+from pydantic import BaseModel
 
 from app.config import Config
-from app.util.exception.custom.regrex import PasswordRegrexException, AccountIdRegrexException
 
 Config = Config.Regrex
 

@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from app.config import Config
-from app.util.exception.custom.security import WrongAuthCodeException
+from app.common.exception.custom.security import WrongAuthCodeException
 
 Config = Config.Auth
 

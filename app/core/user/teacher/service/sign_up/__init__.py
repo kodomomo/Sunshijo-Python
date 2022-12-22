@@ -1,7 +1,7 @@
 from app.config import Config
 from app.core.user.teacher.service.sign_up.dto import SignUpDTO
 from app.util.dao.mysql.teacher import Teacher
-from app.util.exception.custom.security import WrongAuthCodeException
+from app.common.exception.custom.security import WrongAuthCodeException
 
 from app.util.dao.mysql.teacher.command import insert_new_teacher
 

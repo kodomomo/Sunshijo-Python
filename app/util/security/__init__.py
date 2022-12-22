@@ -1,7 +1,7 @@
 from functools import wraps
 
 from app.util.security.token import get_role
-from app.util.exception.custom.security import InvalidRoleException
+from app.common.exception.custom.security import InvalidRoleException
 
 
 def check_role(jwt_token: str, role_list: list):
