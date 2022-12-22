@@ -13,22 +13,23 @@ Config = Config.Regrex
 class Request:
     class SignUp(BaseModel):
         auth_code: UUID
-        account_id: constr()
-        password: constr()
-        workplace: str
-        allocated_subject: str
+        account_id: str  # constr()
+        password: str  # constr()
+        name: str
+        work_place: str
+        subject: str
 
-        @validator('account_id')
-        def check_account_id(cls, v):
-            if not re.fullmatch(Config.REGREX_ID, v):
-                raise AccountIdRegrexException
-            return v
-
-        @validator('password')
-        def check_password(cls, v):
-            if not re.fullmatch(Config.REGREX_PASSWORD, v):
-                raise PasswordRegrexException
-            return v
+        # @validator('account_id')
+        # def check_account_id(cls, v):
+        #     if not re.fullmatch(Config.REGREX_ID, v):
+        #         raise AccountIdRegrexException
+        #     return v
+        #
+        # @validator('password')
+        # def check_password(cls, v):
+        #     if not re.fullmatch(Config.REGREX_PASSWORD, v):
+        #         raise PasswordRegrexException
+        #     return v
 
     class SignIn(BaseModel):
         account_id: str

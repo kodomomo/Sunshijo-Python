@@ -4,6 +4,8 @@ from app.core.user.teacher.payload import Request
 from app.core.user.teacher.service.sign_in import sign_in
 from app.core.user.teacher.service.sign_up import sign_up
 
+from app.util.type_changer.models.teacher import payload_to_dto
+
 teacher_router = APIRouter(
     prefix='/teacher'
 )
@@ -12,9 +14,7 @@ teacher_router = APIRouter(
 @teacher_router.post('/register')
 def teacher_sign_up(request: Request.SignUp):
     return sign_up(
-        request.auth_code,
-        request.account_id,
-        request.password
+        payload_to_dto(request)
     )
 
 
