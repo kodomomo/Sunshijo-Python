@@ -10,3 +10,13 @@ class TeacherNotFoundException(HTTPException):
 
         self.detail = detail
         self.status_code = 400
+
+
+class AlreadyExistTeacherAccountId(HTTPException):
+
+    def __init__(self, detail: Optional[str] = None):
+        if detail in [None, '', ' ']:
+            detail = 'TEACHER ID ALREADY EXIST'
+
+        self.detail = detail
+        self.status_code = 409
