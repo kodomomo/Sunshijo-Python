@@ -4,7 +4,7 @@ from requests import get
 from app.config import Config
 
 from app.util import ktc_this_monday, ktc_this_friday, ktc_next_monday, ktc_next_friday
-from app.util.type_changer import int_to_week_of_day, date_to_int
+from app.util.type_changer.date import int_to_week_of_day, date_to_int
 
 Config = Config.Nice
 grade = [1, 2, 3]
