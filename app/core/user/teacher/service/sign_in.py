@@ -22,12 +22,12 @@ def sign_in(account_id: str, password: str):
     if not match_password(password, teacher.password):
         raise WrongPasswordException
 
-    access_token = generate_access_token(teacher.teacher_id, Role.TEACHER)
-    refresh_token = generate_refresh_token(teacher.teacher_id)
+    access_token = generate_access_token(teacher.id, Role.TEACHER)
+    refresh_token = generate_refresh_token(teacher.id)
 
     set_ex(
         ttl=timedelta(hours=Config.REFRESH_EXPIRE),
-        uid=teacher.teacher_id,
+        uid=teacher.id,
         refresh_token=refresh_token
     )
 

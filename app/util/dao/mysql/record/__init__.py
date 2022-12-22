@@ -31,11 +31,11 @@ class Record(Base):
     __table_args__ = (
         ForeignKeyConstraint(
             [request_teacher],
-            [Teacher.id_column]
+            [Teacher.teacher_id]
         ),
         ForeignKeyConstraint(
             [approved_teacher],
-            [Teacher.id_column]
+            [Teacher.teacher_id]
         ),
         ForeignKeyConstraint(
             [origin_grade, origin_class, origin_name, origin_gradations, origin_day],
