@@ -1,6 +1,6 @@
 from functools import wraps
 
-from app.util.security.token import get_role
+from app.common.security.token import get_role
 from app.common.exception.custom.security import InvalidRoleException
 
 

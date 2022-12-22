@@ -10,8 +10,8 @@ from app.util.dao.mysql.teacher.query import query_teacher_by_account_id
 
 from app.common.exception.custom.security import WrongPasswordException
 
-from app.util.security.password import match_password
-from app.util.security.token import generate_access_token, generate_refresh_token
+from app.common.security import match_password
+from app.common.security.token import generate_access_token, generate_refresh_token
 
 Config = Config.JWT
 
