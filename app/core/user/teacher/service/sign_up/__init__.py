@@ -1,5 +1,6 @@
 from app.config import Config
 from app.core.user.teacher.service.sign_up.dto import SignUpDTO
+from app.infrastructure.database.mysql.cqrs.teacher.query import teacher_account_exist
 from app.infrastructure.database.mysql.model.teacher import Teacher
 from app.common.exception.custom.security import WrongAuthCodeException
 
@@ -16,8 +17,6 @@ def sign_up(sign_up_dto: SignUpDTO):
 
     teacher: Teacher = dto_to_model(sign_up_dto)
 
-    # TODO 회원 아이디와 이름 유무 체크
-
-    # Scalar == getenv && one == environ
+    teacher_account_exist(teacher.account_id)
 
     insert_new_teacher(teacher)
