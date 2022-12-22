@@ -6,7 +6,7 @@ class TeacherNotFoundException(HTTPException):
 
     def __init__(self, detail: Optional[str] = None):
         if detail in [None, '', ' ']:
-            detail = 'DATE PRERIOD IS NOT WEEK'
+            detail = 'TEACHER NOT FOUND'
 
         self.detail = detail
         self.status_code = 400
