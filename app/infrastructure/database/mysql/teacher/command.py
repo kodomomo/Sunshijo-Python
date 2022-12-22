@@ -1,5 +1,5 @@
-from app.util.database.mysql import dao
-from app.util.database.mysql.teacher import Teacher
+from app.infrastructure.database.mysql import dao
+from app.infrastructure.database.mysql.teacher import Teacher
 
 
 def insert_new_teacher(teacher: Teacher):

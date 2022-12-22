@@ -1,9 +1,9 @@
 from app.config import Config
 from app.core.user.teacher.service.sign_up.dto import SignUpDTO
-from app.util.database.mysql.teacher import Teacher
+from app.infrastructure.database.mysql.teacher import Teacher
 from app.common.exception.custom.security import WrongAuthCodeException
 
-from app.util.database.mysql.teacher.command import insert_new_teacher
+from app.infrastructure.database.mysql.teacher.command import insert_new_teacher
 
 from app.util.type_changer.models.teacher import dto_to_model
 

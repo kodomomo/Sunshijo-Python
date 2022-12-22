@@ -1,7 +1,7 @@
 from datetime import date, timedelta
 
 from app.common.exception import DatePeriodIsNotWeek
-from app.util.database.mysql.schedule.query import query_schedule_list
+from app.infrastructure.database.mysql import query_schedule_list
 
 
 def get_schedule_list(grade: str, room: str, start_at: date, end_at: date):

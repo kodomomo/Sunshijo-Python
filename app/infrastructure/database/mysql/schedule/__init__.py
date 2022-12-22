@@ -1,11 +1,6 @@
-from uuid import uuid4
+from sqlalchemy import Column, CHAR, VARCHAR, DATE, PrimaryKeyConstraint
 
-from sqlalchemy import Column, CHAR, VARCHAR, DATE, BINARY, PrimaryKeyConstraint
-from sqlalchemy.orm import synonym
-
-from sqlalchemy.ext.hybrid import hybrid_property
-
-from app.util.database.mysql import Base
+from app.infrastructure.database.mysql import Base
 
 
 class Schedule(Base):

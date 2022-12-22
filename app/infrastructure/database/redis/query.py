@@ -1,4 +1,4 @@
-from app.util.database.redis import Redis
+from app.infrastructure.database.redis import Redis
 
 
 def get_value_by_user_id(uid):

@@ -5,8 +5,8 @@ from app.core.user import Role
 
 from app.core.user.teacher.payload import Response
 
-from app.util.database.redis.command import set_ex
-from app.util.database.mysql.teacher.query import query_teacher_by_account_id
+from app.infrastructure.database.redis.command import set_ex
+from app.infrastructure.database.mysql.teacher.query import query_teacher_by_account_id
 
 from app.common.exception.custom.security import WrongPasswordException
 
