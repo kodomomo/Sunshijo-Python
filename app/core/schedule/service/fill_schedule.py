@@ -1,6 +1,6 @@
 from sqlalchemy.exc import IntegrityError
 
-from app.infrastructure.database.mysql import insert_schedule_by_sql
+from app.infrastructure.database.mysql.cqrs.schedule.command import insert_schedule_by_sql
 from app.infrastructure.nice_api import get_this_week_schedule, get_next_week_schedule
 
 

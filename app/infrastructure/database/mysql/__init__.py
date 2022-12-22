@@ -1,23 +1,16 @@
-from sqlalchemy.ext.declarative import declarative_base as __declarative_base
-
-from contextlib import contextmanager
-
-from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 
-from sqlalchemy.orm import sessionmaker, scoped_session, Session
+from sqlalchemy.orm import sessionmaker, scoped_session
 
 from app.config import Config
 
 
-class DAO:
-
-    def __init__(self):
-        self.__engine = self.__create_engine()
-        self.__session = self.__create_session(self.__engine)()
+class MySQLInitializer:
 
     @staticmethod
-    def __create_engine() -> Engine:
+    def _create_engine() -> Engine:
+        from sqlalchemy import create_engine
+
         return create_engine(
             url=Config.DataBase.URL,
             encoding="utf-8",
@@ -28,33 +21,12 @@ class DAO:
         )
 
     @staticmethod
-    def __create_session(engine: Engine) -> scoped_session:
+    def _create_session(engine: Engine) -> scoped_session:
         return scoped_session(
             sessionmaker(bind=engine, autocommit=False, autoflush=False, expire_on_commit=False)
         )
 
-    @contextmanager
-    def session_scope(self) -> Session:
-        try:
-            yield self.__session
-            self.__session.commit()
-        except:
-            self.__session.rollback()
-        finally:
-            self.__session.close()
 
-    @property
-    def engine(self):
-        return self.__engine
-
-    @contextmanager
-    def execute_query(self):
-        yield self.engine.execute
-
-
-dao = DAO()
-Base = __declarative_base()
-
-
-def create_all_table():
-    Base.metadata.create_all(dao.engine)
+class MySQLConnector(MySQLInitializer):
+    engine = MySQLInitializer._create_engine()
+    session = MySQLInitializer._create_session(engine)

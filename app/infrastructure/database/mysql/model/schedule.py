@@ -1,6 +1,6 @@
 from sqlalchemy import Column, CHAR, VARCHAR, DATE, PrimaryKeyConstraint
 
-from app.infrastructure.database.mysql import Base
+from app.infrastructure.database.mysql.model import Base
 
 
 class Schedule(Base):

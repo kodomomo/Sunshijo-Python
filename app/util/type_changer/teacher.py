@@ -1,6 +1,6 @@
 from uuid import uuid4
 from app.common.security.password import encode_password
-from app.infrastructure.database.mysql.teacher import Teacher
+from app.infrastructure.database.mysql.model.teacher import Teacher
 from app.core.user.teacher.payload import Request
 from app.core.user.teacher.service.sign_up.dto import SignUpDTO
 

@@ -3,7 +3,7 @@ from uuid import UUID
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy import Column, BINARY, CHAR, VARCHAR
 
-from app.infrastructure.database.mysql import Base
+from app.infrastructure.database.mysql.model import Base
 
 
 class Teacher(Base):

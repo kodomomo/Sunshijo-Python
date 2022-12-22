@@ -1,8 +1,8 @@
 from sqlalchemy import Column, ForeignKeyConstraint, VARCHAR, BINARY, DATETIME, CHAR, DATE
 
-from app.infrastructure.database.mysql import Base
-from app.infrastructure.database.mysql.schedule import Schedule
-from app.infrastructure.database.mysql.teacher import Teacher
+from app.infrastructure.database.mysql.model import Base
+from app.infrastructure.database.mysql.model.schedule import Schedule
+from app.infrastructure.database.mysql.model.teacher import Teacher
 
 
 class Record(Base):

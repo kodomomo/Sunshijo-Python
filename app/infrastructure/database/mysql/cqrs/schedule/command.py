@@ -1,7 +1,7 @@
 from sqlalchemy.sql import text
-from app.infrastructure.database.mysql import dao
+from app.infrastructure.database.mysql.cqrs import DAO
 
 
 def insert_schedule_by_sql(sql: str):
-    with dao.execute_query() as execute:
+    with DAO.execute_query() as execute:
         execute(text(sql))

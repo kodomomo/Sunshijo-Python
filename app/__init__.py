@@ -5,7 +5,7 @@ from app.core.user.teacher import include_teacher_router
 
 from app.common.exception import initialize_exception_handler
 
-from app.infrastructure.database.mysql import create_all_table
+from app.infrastructure.database.mysql.model import create_all_table
 
 from app.util.macro import run_macro
 
