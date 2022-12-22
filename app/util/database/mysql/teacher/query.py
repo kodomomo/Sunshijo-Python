@@ -1,5 +1,5 @@
-from app.util.dao.mysql import dao
-from app.util.dao.mysql.teacher import Teacher
+from app.util.database.mysql import dao
+from app.util.database.mysql.teacher import Teacher
 from app.common.exception import Throws
 from app.common.exception.custom.models.teacher import TeacherNotFoundException
 

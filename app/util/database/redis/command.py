@@ -1,5 +1,5 @@
 from datetime import timedelta
-from app.util.dao.redis import Redis
+from app.util.database.redis import Redis
 
 
 def set_ex(ttl: timedelta, uid, refresh_token):

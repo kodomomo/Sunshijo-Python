@@ -57,8 +57,8 @@ Base = __declarative_base()
 
 
 def create_all_table():
-    from app.util.dao.mysql.schedule import Schedule
-    from app.util.dao.mysql.teacher import Teacher
-    from app.util.dao.mysql.record import Record
+    from app.util.database.mysql.schedule import Schedule
+    from app.util.database.mysql.teacher import Teacher
+    from app.util.database.mysql.record import Record
 
     Base.metadata.create_all(dao.engine)

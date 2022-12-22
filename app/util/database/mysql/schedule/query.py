@@ -1,8 +1,8 @@
 from datetime import date
 from typing import List
 
-from app.util.dao.mysql import dao
-from app.util.dao.mysql.schedule import Schedule
+from app.util.database.mysql import dao
+from app.util.database.mysql.schedule import Schedule
 from app.common.exception import Throws
 from app.common.exception import ScheduleNotFoundException
 

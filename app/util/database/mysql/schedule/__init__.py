@@ -5,7 +5,7 @@ from sqlalchemy.orm import synonym
 
 from sqlalchemy.ext.hybrid import hybrid_property
 
-from app.util.dao.mysql import Base
+from app.util.database.mysql import Base
 
 
 class Schedule(Base):
