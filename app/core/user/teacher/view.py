@@ -4,7 +4,7 @@ from app.core.user.teacher.payload import Request
 from app.core.user.teacher.service.sign_in import sign_in
 from app.core.user.teacher.service.sign_up import sign_up
 
-from app.util.type_changer.models.teacher import payload_to_dto
+from app.util.type_changer.teacher import payload_to_dto
 
 teacher_router = APIRouter(
     prefix='/teacher'

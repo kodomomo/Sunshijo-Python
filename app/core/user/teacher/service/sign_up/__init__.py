@@ -5,7 +5,7 @@ from app.common.exception.custom.security import WrongAuthCodeException
 
 from app.infrastructure.database.mysql.teacher.command import insert_new_teacher
 
-from app.util.type_changer.models.teacher import dto_to_model
+from app.util.type_changer.teacher import dto_to_model
 
 Config = Config.Auth
 
