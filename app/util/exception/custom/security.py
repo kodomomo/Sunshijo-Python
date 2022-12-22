@@ -20,3 +20,13 @@ class WrongPasswordException(HTTPException):
 
         self.detail = detail
         self.status_code = 400
+
+
+class WrongAuthCodeException(HTTPException):
+
+    def __init__(self, detail: Optional[str] = None):
+        if detail in [None, '', ' ']:
+            detail = 'WRONG PASSWORD'
+
+        self.detail = detail
+        self.status_code = 400
