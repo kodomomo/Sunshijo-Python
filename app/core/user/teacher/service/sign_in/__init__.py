@@ -10,7 +10,7 @@ from app.infrastructure.database.mysql.teacher.query import query_teacher_by_acc
 
 from app.common.exception.custom.security import WrongPasswordException
 
-from app.common.security import match_password
+from app.common.security.password import match_password
 from app.common.security.token import generate_access_token, generate_refresh_token
 
 Config = Config.JWT
