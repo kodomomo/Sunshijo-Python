@@ -1,10 +1,27 @@
-from typing import Type
+from typing import Type, Union
 from fastapi import HTTPException
 
 from functools import wraps
 
 
 class Throws:
+
+    @staticmethod
+    def throw(exception: Union[Type[HTTPException], Exception]):
+        raise exception
+
+    @staticmethod
+    def already_exist(exception: Type[HTTPException]):
+        def decorator(func):
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                if func(*args, **kwargs) is not None:
+                    Throws.throw(exception)
+
+            return wrapper
+
+        return decorator
+
     @staticmethod
     def not_found_exception(exception: Type[HTTPException]):
         def decorator(func):
