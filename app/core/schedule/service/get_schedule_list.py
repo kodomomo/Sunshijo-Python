@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 
-from app.common.exception.custom.util import DatePeriodIsNotWeek
+from app.core.schedule.exception import DatePeriodIsNotWeekException
 from app.infrastructure.database.mysql.schedule.query import query_schedule_list
 
 
@@ -27,4 +27,4 @@ def get_schedule_list(grade: str, room: str, start_at: date, end_at: date):
 
 def __check_week_period(start_at: date, end_at: date):
     if start_at + timedelta(days=6) < end_at or start_at < end_at - timedelta(days=6):
-        raise DatePeriodIsNotWeek
+        raise DatePeriodIsNotWeekException

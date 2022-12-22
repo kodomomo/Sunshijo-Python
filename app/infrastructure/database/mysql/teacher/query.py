@@ -1,7 +1,7 @@
 from app.infrastructure.database.mysql import dao
 from app.infrastructure.database.mysql.teacher import Teacher
 from app.common.exception.custom import Throws
-from app.common.exception.custom.models.teacher import TeacherNotFoundException
+from app.core.user.teacher.exception import TeacherNotFoundException
 
 
 @Throws.not_found_exception(TeacherNotFoundException)

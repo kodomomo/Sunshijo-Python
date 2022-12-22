@@ -4,7 +4,7 @@ from typing import List
 from app.infrastructure.database.mysql import dao
 from app.infrastructure.database.mysql.schedule import Schedule
 from app.common.exception.custom import Throws
-from app.common.exception.custom.models.schedule import ScheduleNotFoundException
+from app.core.schedule.exception import ScheduleNotFoundException
 
 
 @Throws.not_found_exception(ScheduleNotFoundException)
