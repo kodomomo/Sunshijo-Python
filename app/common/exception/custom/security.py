@@ -8,7 +8,7 @@ class InvalidRoleException(HTTPException):
 
     def __init__(self, detail: Optional[str] = None):
         if detail not in [None, '', ' ']:
-            detail = detail
+            self.detail = detail
 
 
 class WrongPasswordException(HTTPException):
