@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.common.security.auth import initialize_token_security
 from app.core.schedule import include_schedule_router
 from app.core.user.teacher import include_teacher_router
 
@@ -21,5 +22,6 @@ def create_app():
     include_teacher_router(app)
 
     initialize_exception_handler(app)
+    initialize_token_security(app)
 
     return app
