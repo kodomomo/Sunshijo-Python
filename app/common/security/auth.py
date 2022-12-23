@@ -1,6 +1,5 @@
-from functools import wraps
 from typing import Union, Type
-from fastapi import Depends, FastAPI, Request, HTTPException
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 from app.common.security.token import get_role
 from app.common.exception.custom.security import InvalidRoleException, InvalidJwtTokenException
