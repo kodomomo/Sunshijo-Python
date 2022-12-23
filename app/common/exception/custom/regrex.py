@@ -3,20 +3,18 @@ from fastapi import HTTPException
 
 
 class AccountIdRegrexException(HTTPException):
+    status_code = 400
+    detail = 'ACCOUNT ID NOT PASS REGREX'
 
     def __init__(self, detail: Optional[str] = None):
-        if detail in [None, '', ' ']:
-            detail = 'ACCOUNT ID NOT PASS REGREX'
-
-        self.detail = detail
-        self.status_code = 400
+        if detail not in [None, '', ' ']:
+            self.detail = detail
 
 
 class PasswordRegrexException(HTTPException):
+    status_code = 400
+    detail = 'PASSWORD NOT PASS REGREX'
 
     def __init__(self, detail: Optional[str] = None):
-        if detail in [None, '', ' ']:
-            detail = 'PASSWORD NOT PASS REGREX'
-
-        self.detail = detail
-        self.status_code = 400
+        if detail not in [None, '', ' ']:
+            self.detail = detail

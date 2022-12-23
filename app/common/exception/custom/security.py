@@ -12,23 +12,21 @@ class InvalidRoleException(HTTPException):
 
 
 class WrongPasswordException(HTTPException):
+    status_code = 400
+    detail = 'WRONG PASSWORD'
 
     def __init__(self, detail: Optional[str] = None):
-        if detail in [None, '', ' ']:
-            detail = 'WRONG PASSWORD'
-
-        self.detail = detail
-        self.status_code = 400
+        if detail not in [None, '', ' ']:
+            self.detail = detail
 
 
 class WrongAuthCodeException(HTTPException):
+    status_code = 400
+    detail = 'WRONG AUTH CODE'
 
     def __init__(self, detail: Optional[str] = None):
-        if detail in [None, '', ' ']:
-            detail = 'WRONG AUTH CODE'
-
-        self.detail = detail
-        self.status_code = 400
+        if detail not in [None, '', ' ']:
+            self.detail = detail
 
 
 class InvalidJwtTokenException(HTTPException):

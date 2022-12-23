@@ -3,20 +3,19 @@ from fastapi import HTTPException
 
 
 class DatePeriodIsNotWeekException(HTTPException):
+    status_code = 400
+    detail = 'DATE PERIOD IS NOT WEEK'
 
     def __init__(self, detail: Optional[str] = None):
-        if detail in [None, '', ' ']:
-            detail = 'DATE PERIOD IS NOT WEEK'
-
-        self.detail = detail
-        self.status_code = 400
+        if detail not in [None, '', ' ']:
+            self.detail = detail
 
 
 class ScheduleNotFoundException(HTTPException):
+    status_code = 400
+    detail = 'SCHEDULE NOT FOUND'
 
     def __init__(self, detail: Optional[str] = None):
-        if detail in [None, '', ' ']:
-            detail = 'SCHEDULE NOT FOUND'
+        if detail not in [None, '', ' ']:
+            self.detail = detail
 
-        self.detail = detail
-        self.status_code = 400
