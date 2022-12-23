@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKeyConstraint, VARCHAR, BINARY, DATETIME, CHAR, DATE
+from sqlalchemy import Column, ForeignKeyConstraint, VARCHAR, BINARY, DATETIME, CHAR, DATE, BOOLEAN
 
 from app.infrastructure.database.mysql.model import Base
 from app.infrastructure.database.mysql.model.schedule import Schedule
@@ -12,6 +12,7 @@ class Record(Base):
     note = Column(VARCHAR(255), nullable=True)
     request_at = Column(DATETIME, nullable=False)
     approved_at = Column(DATETIME, nullable=True)
+    is_approved = Column(BOOLEAN, nullable=False, default=False)
 
     request_teacher = Column(BINARY(16), nullable=False)
     approved_teacher = Column(BINARY(16), nullable=False)
