@@ -27,10 +27,14 @@ def initialize_token_security(app: FastAPI):
         if prefix_jwt != 'Bearer':
             return create_json_response(InvalidJwtTokenException)
 
-        if get_role(suffix_jwt) not in authorization_url[url]:
+        if (url in authorization_url) and (get_role(suffix_jwt) not in role_list(url)):
             return create_json_response(InvalidRoleException)
 
         return await next_func(request)
+
+
+def role_list(url: str):
+    return authorization_url.get(url)
 
 
 authorization_url = {
