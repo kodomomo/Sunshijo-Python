@@ -1,3 +1,7 @@
+from typing import List
+from uuid import UUID
+
+from sqlalchemy.sql import func
 from app.infrastructure.database.mysql.cqrs import DAO
 from app.infrastructure.database.mysql.model.teacher import Teacher
 from app.common.exception.custom import Throws
@@ -18,3 +22,13 @@ def teacher_account_exist(account_id: str):
         return session.query(Teacher.account_id) \
             .filter(Teacher.account_id == account_id) \
             .scalar()
+
+
+def query_all_teacher():
+    with DAO.session_scope() as session:
+        return session.query(
+            func.BIN_TO_UUID(Teacher.teacher_id).label('teacher_id'),
+            Teacher.name,
+            Teacher.work_place,
+            Teacher.subject,
+        ).all()
