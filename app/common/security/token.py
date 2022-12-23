@@ -12,7 +12,7 @@ JWT = Config.JWT
 def generate_access_token(user_id: UUID, role: Role):
     return encode(
         payload={
-            'exp': ktc_now() + timedelta(JWT.ACCESS_EXPIRE),
+            'exp': ktc_now() + timedelta(hours=JWT.ACCESS_EXPIRE),
             'uid': str(user_id),
             'role': role,
             'type': JWT.ACCESS_NAME
@@ -25,7 +25,7 @@ def generate_access_token(user_id: UUID, role: Role):
 def generate_refresh_token(user_id: UUID):
     return encode(
         payload={
-            'exp': ktc_now() + timedelta(JWT.REFRESH_EXPIRE),
+            'exp': ktc_now() + timedelta(hours=JWT.REFRESH_EXPIRE),
             'uid': str(user_id),
             'type': JWT.REFRESH_NAME
         },
@@ -55,4 +55,5 @@ def is_access_token(jwt_token: str):
 
 
 def is_refresh_token(jwt_token: str):
+    print(_decode_jwt(jwt_token)['type'], JWT.REFRESH_NAME)
     return _decode_jwt(jwt_token)['type'] == JWT.REFRESH_NAME

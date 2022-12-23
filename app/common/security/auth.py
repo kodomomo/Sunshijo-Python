@@ -22,13 +22,16 @@ def initialize_token_security(app: FastAPI):
     @app.middleware('http')
     async def authorization(request: Request, next_func):
         url = request.scope.get('path')
-        prefix_jwt, suffix_jwt = request.headers.get('Authorization').split(' ')
 
-        if prefix_jwt != 'Bearer':
-            return create_json_response(InvalidJwtTokenException)
+        if url in authorization_url:
 
-        if (url in authorization_url) and (get_role(suffix_jwt) not in role_list(url)):
-            return create_json_response(InvalidRoleException)
+            prefix_jwt, suffix_jwt = request.headers.get('Authorization').split(' ')
+
+            if prefix_jwt != 'Bearer':
+                return create_json_response(InvalidJwtTokenException)
+
+            if get_role(suffix_jwt) not in role_list(url):
+                return create_json_response(InvalidRoleException)
 
         return await next_func(request)
 

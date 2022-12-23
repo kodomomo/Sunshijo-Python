@@ -1,4 +1,3 @@
-from typing import List
 from uuid import UUID
 
 from sqlalchemy.sql import func
@@ -6,6 +5,14 @@ from app.infrastructure.database.mysql.cqrs import DAO
 from app.infrastructure.database.mysql.model.teacher import Teacher
 from app.common.exception.custom import Throws
 from app.core.user.teacher.exception import TeacherNotFoundException, AlreadyExistTeacherAccountId
+
+
+@Throws.not_found_exception(TeacherNotFoundException)
+def query_teacher_by_id(teacher_id: str):
+    with DAO.session_scope() as session:
+        return session.query(Teacher)\
+            .filter(Teacher.teacher_id == UUID(teacher_id).bytes) \
+            .one()
 
 
 @Throws.not_found_exception(TeacherNotFoundException)
