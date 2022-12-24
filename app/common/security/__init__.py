@@ -7,7 +7,8 @@ class AuthProperties:
             'GET': [Role.TEACHER]
         },
         '/records': {
-            'POST': [Role.STUDENT]
+            'POST': [Role.TEACHER],
+            'GET': [Role.TEACHER]
         }
     }
 
