@@ -18,9 +18,6 @@ def request_record(request: Request.ChargeRecord, token: str = Depends(oauth2_sc
 def react_to_record(request: Request.ReactRecord):
     return react_to_request_record(request)
 
-    # record update
-    # schedule update
-
 
 @record_router.get('/records')
 def get_my_required_record_list(token: str = Depends(oauth2_scheme)):
@@ -28,5 +25,5 @@ def get_my_required_record_list(token: str = Depends(oauth2_scheme)):
 
 
 @record_router.get('/list')
-def get_approved_record_list(request: Request.GetApprovedList, token: str = Depends(oauth2_scheme)):
+def get_approved_record_list(request: Request.GetApprovedList):
     pass

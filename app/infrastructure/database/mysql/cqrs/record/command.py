@@ -19,6 +19,6 @@ def update_record_react(record_id: UUID, react: bool):
             .where(Record.record_id == record_id.bytes)
             .values(
                 is_approved=react,
-                approved_at=datetime.now()
+                react_at=datetime.now()
             )
         )

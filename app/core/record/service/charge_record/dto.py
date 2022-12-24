@@ -22,4 +22,4 @@ class ChargeRecordDTO:
 
     is_approved: bool
     request_at: datetime
-    approved_at: Optional[datetime] = None
+    react_at: Optional[datetime] = None

@@ -10,7 +10,7 @@ class Record(Base):
 
     record_id = Column('id', BINARY(16), primary_key=True)
     request_at = Column(DATETIME, nullable=False)
-    approved_at = Column(DATETIME, nullable=True)
+    react_at = Column(DATETIME, nullable=True)
     is_approved = Column(BOOLEAN, nullable=False, default=False)
 
     request_teacher = Column(BINARY(16), nullable=False)

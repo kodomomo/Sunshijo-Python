@@ -33,7 +33,7 @@ def dto_to_model(dto: ChargeRecordDTO):
         record_id=uuid4().bytes,
         is_approved=dto.is_approved,
         request_at=dto.request_at,
-        approved_at=None,
+        react_at=None,
 
         request_teacher=dto.origin_teacher_id.bytes,
         approved_teacher=dto.new_teacher_id.bytes,
