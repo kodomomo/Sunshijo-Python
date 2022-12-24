@@ -25,14 +25,11 @@ class Throws:
     @staticmethod
     def not_found_exception(exception: Type[HTTPException]):
         def decorator(func):
-            def throw():
-                raise exception
-
             @wraps(func)
             def wrapper(*args, **kwargs):
                 result = func(*args, **kwargs)
 
-                return result if result is not None else throw()
+                return result if result is not None else Throws.throw(exception)
 
             return wrapper
 

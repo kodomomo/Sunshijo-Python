@@ -41,5 +41,5 @@ def role_list(url: str):
 
 
 authorization_url = {
-    '/teacher/list': [Role.TEACHER]
+    '/teacher/list': [Role.TEACHER]  # Method 지정해주기 TODO
 }

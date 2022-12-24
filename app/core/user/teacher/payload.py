@@ -12,7 +12,7 @@ class Request:
     class SignUp(BaseModel):
         auth_code: UUID
         account_id: str  # constr()
-        password: str  # constr()
+        password: str  # constr() TODO
         name: str
         work_place: str
         subject: str

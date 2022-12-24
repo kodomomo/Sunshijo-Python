@@ -11,9 +11,6 @@ def get_schedule_list(grade: str, room: str, start_at: date, end_at: date):
 
     for i in query_schedule_list(grade, room, start_at, end_at):
 
-        if '[보강]' in i.name:
-            i.name = i.name.replace('[보강]','')
-
         week_day = i.day_at.weekday()
 
         if week_day in response:

@@ -8,8 +8,7 @@ from app.infrastructure.database.mysql.model.teacher import Teacher
 class Record(Base):
     __tablename__ = 'tbl_record'
 
-    record_id = Column(BINARY(16), primary_key=True)
-    note = Column(VARCHAR(255), nullable=True)
+    record_id = Column('id', BINARY(16), primary_key=True)
     request_at = Column(DATETIME, nullable=False)
     approved_at = Column(DATETIME, nullable=True)
     is_approved = Column(BOOLEAN, nullable=False, default=False)
