@@ -38,11 +38,11 @@ class Record(Base):
             [Teacher.teacher_id]
         ),
         ForeignKeyConstraint(
-            [origin_grade, origin_class, origin_name, origin_gradations, origin_day],
-            [Schedule.grade, Schedule.class_num, Schedule.name, Schedule.gradations, Schedule.day_at]
+            [origin_grade, origin_class, origin_gradations, origin_day],
+            [Schedule.grade, Schedule.class_num, Schedule.gradations, Schedule.day_at],
         ),
         ForeignKeyConstraint(
-            [new_grade, new_class, new_name, new_gradations, new_day],
-            [Schedule.grade, Schedule.class_num, Schedule.name, Schedule.gradations, Schedule.day_at]
+            [new_grade, new_class, new_gradations, new_day],
+            [Schedule.grade, Schedule.class_num, Schedule.gradations, Schedule.day_at],
         )
     )

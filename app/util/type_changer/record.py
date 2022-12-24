@@ -29,8 +29,6 @@ def payload_to_dto(origin_teacher_id: UUID, request: Request.ChargeRecord):
 
 
 def dto_to_model(dto: ChargeRecordDTO):
-    print('origin', dto.origin_teacher_id, type(dto.origin_teacher_id))
-    print('new', dto.new_teacher_id, type(dto.new_teacher_id))
     return Record(
         record_id=uuid4().bytes,
         is_approved=dto.is_approved,

@@ -14,6 +14,6 @@ class Schedule(Base):
     week_of_day = Column(CHAR(3), nullable=False)
 
     __table_args__ = (
-        PrimaryKeyConstraint(grade, class_num, name, gradations, day_at),
+        PrimaryKeyConstraint(grade, class_num, gradations, day_at),
         {}
     )

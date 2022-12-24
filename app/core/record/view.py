@@ -4,6 +4,7 @@ from app.common.security.auth import oauth2_scheme
 from app.core.record.payload import Request
 from app.core.record.service.charge_record import charge_record
 from app.core.record.service.my_records import get_my_record
+from app.core.record.service.react_record import react_to_request_record
 
 record_router = APIRouter()
 
@@ -13,9 +14,9 @@ def request_record(request: Request.ChargeRecord, token: str = Depends(oauth2_sc
     charge_record(token, request)
 
 
-@record_router.patch('/')
-def approve_to_request_record():
-    pass
+@record_router.patch('/records')
+def react_to_record(request: Request.ReactRecord):
+    return react_to_request_record(request)
 
     # record update
     # schedule update
@@ -27,5 +28,5 @@ def get_my_required_record_list(token: str = Depends(oauth2_scheme)):
 
 
 @record_router.get('/list')
-def get_approved_record_list():
+def get_approved_record_list(request: Request.GetApprovedList, token: str = Depends(oauth2_scheme)):
     pass
