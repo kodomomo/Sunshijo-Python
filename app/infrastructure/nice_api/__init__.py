@@ -23,6 +23,10 @@ def get_next_week_schedule():
     return get_all_class_schedule(monday, friday)
 
 
+def get_schedule_by_param(start_at: date, end_at: date):
+    return get_all_class_schedule(start_at, end_at)
+
+
 def get_all_class_schedule(monday: date, friday: date):
     all_schedule_list = []
     monday, friday = date_to_int(monday), date_to_int(friday)

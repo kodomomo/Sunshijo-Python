@@ -1,7 +1,8 @@
+from datetime import date
 from sqlalchemy.exc import IntegrityError
 
 from app.infrastructure.database.mysql.cqrs.schedule.command import insert_schedule_by_sql
-from app.infrastructure.nice_api import get_this_week_schedule, get_next_week_schedule
+from app.infrastructure.nice_api import get_this_week_schedule, get_next_week_schedule, get_schedule_by_param
 
 
 def fill_two_week_schedule():
@@ -16,6 +17,18 @@ def fill_two_week_schedule():
 
         except IntegrityError:
             continue
+
+
+def fill_schedule_by_param(start_at: date, end_at: date):
+    sql = __get_insert_sql(
+        get_schedule_by_param(start_at, end_at)
+    )
+
+    try:
+        insert_schedule_by_sql(sql)
+
+    except IntegrityError:
+        pass
 
 
 def __get_insert_sql(schedule: list):
