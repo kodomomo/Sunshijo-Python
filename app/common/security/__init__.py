@@ -4,15 +4,6 @@ from app.core.user import Role
 class AuthProperties:
     _authorization_url = {
         # Teacher
-        '/teacher': {
-            'GET': [Role.TEACHER]
-        },
-        '/teacher/auth': {
-            'POST': [Role.TEACHER]
-        },
-        '/teacher/register': {
-            'POST': [Role.TEACHER]
-        },
         '/teacher/token': {
             'PUT': [Role.TEACHER]
         },
