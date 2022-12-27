@@ -1,4 +1,7 @@
-from fastapi import APIRouter, Depends
+from typing import Union
+from datetime import date
+
+from fastapi import APIRouter, Depends, Query
 
 from app.common.security.auth import oauth2_scheme
 from app.core.record.payload import Request
@@ -26,5 +29,5 @@ def get_my_required_record_list(token: str = Depends(oauth2_scheme)):
 
 
 @record_router.get('/records/list')
-def get_approved_record_list(request: Request.GetApprovedList):
-    return get_approved_record(request)
+def get_approved_record_list(start_at: date = Query(alias='startAt'), end_at: date = Query(alias='endAt')):
+    return get_approved_record(start_at, end_at)

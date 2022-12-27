@@ -20,10 +20,6 @@ class Request:
 
         new_teacher_id: UUID
 
-    class GetApprovedList(BaseModel):
-        start_at: date
-        end_at: date
-
     class ReactRecord(BaseModel):
         react: bool
         record_id: UUID

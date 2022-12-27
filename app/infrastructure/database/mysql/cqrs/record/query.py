@@ -1,7 +1,7 @@
 from uuid import UUID
 from app.util.type_changer import date
 
-from sqlalchemy.sql import func, select
+from sqlalchemy.sql import func
 from sqlalchemy.orm import aliased
 
 from app.common.exception.custom import Throws
