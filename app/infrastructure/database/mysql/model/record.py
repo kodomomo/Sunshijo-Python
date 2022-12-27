@@ -1,3 +1,4 @@
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, ForeignKeyConstraint, VARCHAR, BINARY, DATETIME, CHAR, DATE, BOOLEAN
 
 from app.infrastructure.database.mysql.model import Base

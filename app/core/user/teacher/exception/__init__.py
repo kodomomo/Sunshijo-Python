@@ -4,7 +4,7 @@ from fastapi import HTTPException
 
 class TeacherNotFoundException(HTTPException):
     detail = 'TEACHER NOT FOUND'
-    status_code = 400
+    status_code = 404
 
     def __init__(self, detail: Optional[str] = None):
         if detail not in [None, '', ' ']:

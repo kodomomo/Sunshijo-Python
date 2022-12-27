@@ -1,7 +1,7 @@
 from typing import Union, Type
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
-from app.common.security.token import get_role
+from app.common.security.token import get_role, check_token_expire
 from app.common.exception.custom.security import InvalidRoleException, InvalidJwtTokenException
 from fastapi.security import OAuth2PasswordBearer
 
@@ -31,6 +31,9 @@ def initialize_token_security(app: FastAPI):
 
             if prefix_jwt != 'Bearer':
                 return create_json_response(InvalidJwtTokenException)
+
+            if check_token_expire(suffix_jwt):
+                return create_json_response(InvalidJwtTokenException('TOKEN HAS EXPIRED'))
 
             if get_role(suffix_jwt) not in role_list:
                 return create_json_response(InvalidRoleException)

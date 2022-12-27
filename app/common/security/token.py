@@ -1,7 +1,8 @@
 from uuid import UUID
-from jwt import encode, decode
+from jwt import encode, decode, ExpiredSignatureError
 from datetime import timedelta
 
+from app.common.exception.custom.security import InvalidJwtTokenException
 from app.util import ktc_now
 from app.config import Config
 from app.core.user import Role
@@ -42,6 +43,14 @@ def _decode_jwt(jwt_token: str):
     )
 
 
+def check_token_expire(jwt_token: str):
+    try:
+        _decode_jwt(jwt_token)
+
+    except ExpiredSignatureError:
+        return True
+
+
 def get_uid(jwt_token: str):
     return _decode_jwt(jwt_token)['uid']
 
@@ -55,5 +64,4 @@ def is_access_token(jwt_token: str):
 
 
 def is_refresh_token(jwt_token: str):
-    print(_decode_jwt(jwt_token)['type'], JWT.REFRESH_NAME)
     return _decode_jwt(jwt_token)['type'] == JWT.REFRESH_NAME
