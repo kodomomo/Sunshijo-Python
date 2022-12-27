@@ -3,11 +3,30 @@ from app.core.user import Role
 
 class AuthProperties:
     _authorization_url = {
+        # Teacher
         '/teacher': {
             'GET': [Role.TEACHER]
         },
+        '/teacher/auth': {
+            'POST': [Role.TEACHER]
+        },
+        '/teacher/register': {
+            'POST': [Role.TEACHER]
+        },
+        '/teacher/token': {
+            'PUT': [Role.TEACHER]
+        },
+        '/teacher/list': {
+            'GET': [Role.TEACHER]
+        },
+
+        # Record
         '/records': {
             'POST': [Role.TEACHER],
+            'GET': [Role.TEACHER],
+            'PATCH': [Role.TEACHER],
+        },
+        '/records/list': {
             'GET': [Role.TEACHER]
         }
     }
