@@ -6,7 +6,7 @@ def initialize_cors(app: FastAPI):
     app.add_middleware(
         CORSMiddleware,
         allow_origins=[
-            "https://boisterous-paprenjak-b40c12.netlify.app/",
+            "https://sunshijo-frontend.vercel.app/",
             "*"
         ],
         allow_credentials=True,
