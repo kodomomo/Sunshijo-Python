@@ -4,7 +4,7 @@ from requests import get
 from app.config import Config
 
 from app.util import ktc_this_monday, ktc_this_friday, ktc_next_monday, ktc_next_friday
-from app.util.type_changer.date import int_to_week_of_day, date_to_int
+from app.util.type_changer.date import int_to_week_of_day_kr, date_to_int
 
 Config = Config.Nice
 grade = [1, 2, 3]
@@ -44,7 +44,7 @@ def parse_schedule(schedule_list):
         'GRADE': x['GRADE'],
         'ROOM': x['CLASS_NM'],
         'SEQUENCE': x['PERIO'],
-        'WEEK_OF_DAY': int_to_week_of_day(x['ALL_TI_YMD']),
+        'WEEK_OF_DAY': int_to_week_of_day_kr(x['ALL_TI_YMD']),
         'DAY': x['ALL_TI_YMD'],
     }, schedule_list))
 
