@@ -11,6 +11,7 @@ def insert_schedule_by_sql(sql: str):
 
 
 def update_schedule_subject_by_ck(grade: str, class_num: str, gradation: str, day_at: date, new_subject: str):
+    print(grade, class_num, gradation, day_at, new_subject)
     with DAO.session_scope() as session:
         session.execute(
             update(Schedule)
