@@ -7,6 +7,7 @@ def initialize_cors(app: FastAPI):
         CORSMiddleware,
         allow_origins=[
             "https://sunshijo-frontend.vercel.app/",
+            "https://sunshijo-frontend.vercel.app/main",
             "*"
         ],
         allow_credentials=True,

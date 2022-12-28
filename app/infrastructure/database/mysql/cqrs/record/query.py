@@ -44,6 +44,8 @@ def query_approved_record_by_date(start_at: date, end_at: date):
             Teacher, Teacher.teacher_id == Record.request_teacher
         ).join(
             new_teacher, new_teacher.teacher_id == Record.approved_teacher
+        ).order_by(
+            Record.react_at.desc()
         ).all()
 
 
@@ -65,5 +67,6 @@ def query_my_not_approved_records(teacher_id: str):
         ).filter(
             Record.is_approved == False,
             Record.approved_teacher == UUID(teacher_id).bytes,
+            Record.react_at == None
         ).join(Teacher, Teacher.teacher_id == Record.request_teacher) \
             .all()
