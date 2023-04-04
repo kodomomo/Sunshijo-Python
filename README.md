@@ -13,5 +13,8 @@
     pip install -r requirements.txt
 
     uvicorn run:app
+    
+### 시연 영상
+https://user-images.githubusercontent.com/80697064/229672196-4fcafcb1-3957-496d-a394-0a86737d9489.mp4
 
 </div>
